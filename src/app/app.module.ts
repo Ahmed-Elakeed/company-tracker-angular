@@ -5,16 +5,23 @@ import { AppComponent } from './app.component';
 import { EmployeeComponent } from './component/employee/employee.component';
 import {HttpClientModule} from "@angular/common/http";
 import { DepartmentComponent } from './component/department/department.component';
+import { NavbarComponent } from './component/navbar/navbar.component';
+import {RouterLink, RouterOutlet} from "@angular/router";
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     EmployeeComponent,
-    DepartmentComponent
+    DepartmentComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
-    HttpClientModule
+    HttpClientModule,
+    RouterOutlet,
+    RouterLink,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
