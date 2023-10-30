@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {EmployeeService} from "../../service/employee.service";
+import {EmployeeDTO} from "../../dto/EmployeeDTO";
 
 @Component({
   selector: 'app-employee',
@@ -8,6 +9,7 @@ import {EmployeeService} from "../../service/employee.service";
 })
 export class EmployeeComponent implements OnInit{
 
+  public employeesDTOs:EmployeeDTO[]=[];
   constructor(private employeeService:EmployeeService) {
   }
 
@@ -17,8 +19,9 @@ export class EmployeeComponent implements OnInit{
 
   public getAllEmployees(){
     this.employeeService.fetchAllEmployees().subscribe(
-      (data)=>{
-        console.log(data);
+      (response)=>{
+        console.log(response);
+        this.employeesDTOs=response.data;
       }
     )
   }

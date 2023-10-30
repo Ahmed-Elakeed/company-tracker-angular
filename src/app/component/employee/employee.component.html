@@ -1,1 +1,22 @@
-<p>employee works!</p>
+<h3 style="text-align: center;margin: auto;padding: 15px;color: #a30505">Employees</h3>
+<table class="table">
+  <thead class="thead-dark" style="background-color: black;color: white">
+  <tr>
+    <th scope="col">#</th>
+    <th scope="col">Name</th>
+    <th scope="col">Email</th>
+    <th scope="col">Action</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let employeeDTO of employeesDTOs">
+    <td>{{employeeDTO.id}}</td>
+    <td>{{employeeDTO.fullName}}</td>
+    <td>{{employeeDTO.email}}</td>
+    <td>
+      <button class="btn btn-primary">Update</button> |
+      <button class="btn btn-danger">Delete</button>
+    </td>
+  </tr>
+  </tbody>
+</table>
