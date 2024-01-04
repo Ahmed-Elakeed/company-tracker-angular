@@ -9,10 +9,10 @@ import {SessionUtilService} from "../../util/session-util.service";
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit{
+export class LoginComponent implements OnInit {
 
   public loginDTO: LoginDTO = new LoginDTO();
-  public invalidCredentials=false;
+  public invalidCredentials = false;
 
 
   ngOnInit(): void {
@@ -21,7 +21,8 @@ export class LoginComponent implements OnInit{
       this.router.navigate(['/departments']);
     }
   }
-  constructor(private adminService: AdminService,private router:Router, private sessionUtil:SessionUtilService) {
+
+  constructor(private adminService: AdminService, private router: Router, private sessionUtil: SessionUtilService) {
   }
 
   login() {
@@ -30,10 +31,11 @@ export class LoginComponent implements OnInit{
         if (response.responseCode == 200) {
           this.invalidCredentials = false;
           let loginData = {
-            "token":response.data.token,
-            "email":response.data.email,
-            "id":response.data.id,
-            "role":response.data.role
+            "token": response.data.token,
+            "email": response.data.email,
+            "name": response.data.name,
+            "id": response.data.id,
+            "role": response.data.role
           }
           localStorage.setItem("loginData", JSON.stringify(loginData))
           sessionStorage.setItem("loginData", JSON.stringify(loginData))

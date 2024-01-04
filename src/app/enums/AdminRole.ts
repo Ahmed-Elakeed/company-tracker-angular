@@ -1,4 +1,4 @@
 export enum AdminRole {
-  MASTER= "MASTER" ,
-  SLAVE="SLAVE" ,
+  MASTER ,
+  SLAVE ,
 }

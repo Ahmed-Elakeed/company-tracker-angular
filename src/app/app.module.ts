@@ -22,6 +22,7 @@ import { ProjectFormPopupComponent } from './component/project-form-popup/projec
 import {DatePipe} from "@angular/common";
 import { TaskFormPopupComponent } from './component/task-form-popup/task-form-popup.component';
 import { AdminComponent } from './component/admin/admin.component';
+import { AdminFormPopupComponent } from './component/admin-form-popup/admin-form-popup.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { AdminComponent } from './component/admin/admin.component';
     CustomTablePopupViewComponent,
     ProjectFormPopupComponent,
     TaskFormPopupComponent,
-    AdminComponent
+    AdminComponent,
+    AdminFormPopupComponent
   ],
   imports: [
     BrowserModule,
@@ -55,6 +57,3 @@ import { AdminComponent } from './component/admin/admin.component';
 })
 export class AppModule {
 }
-
-
-// todo -> test all cascade delete and update

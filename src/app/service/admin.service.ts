@@ -4,6 +4,7 @@ import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {ApiGenericResponse} from "../dto/ApiGenericResponse";
 import {LoginDTO} from "../dto/LoginDTO";
+import {AdminDTO} from "../dto/AdminDTO";
 
 @Injectable({
   providedIn: 'root'
@@ -25,5 +26,9 @@ export class AdminService {
 
   public deleteAdmin(id: number): Observable<ApiGenericResponse> {
     return this.http.delete<ApiGenericResponse>(this.ADMIN_URL + "/" + id);
+  }
+
+  public saveOrUpdateAdmin(adminDTO: AdminDTO): Observable<ApiGenericResponse> {
+    return this.http.post<ApiGenericResponse>(this.ADMIN_URL, adminDTO);
   }
 }

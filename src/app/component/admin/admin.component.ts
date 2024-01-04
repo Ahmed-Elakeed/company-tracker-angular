@@ -1,6 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {AdminDTO} from "../../dto/AdminDTO";
 import {AdminService} from "../../service/admin.service";
+import {SessionUtilService} from "../../util/session-util.service";
+import {AdminFormPopupComponent} from "../admin-form-popup/admin-form-popup.component";
+import {MatDialog} from "@angular/material/dialog";
 
 @Component({
   selector: 'app-admin',
@@ -10,7 +13,11 @@ import {AdminService} from "../../service/admin.service";
 export class AdminComponent implements OnInit {
   adminDTOs: AdminDTO[] = [];
 
-  constructor(private adminService: AdminService) {
+  constructor(
+    private dialog:MatDialog,
+    private adminService: AdminService,
+    private sessionUtil:SessionUtilService
+  ) {
   }
 
   ngOnInit(): void {
@@ -22,14 +29,26 @@ export class AdminComponent implements OnInit {
       (response) => {
         if (response.responseCode == 200) {
           this.adminDTOs = response.data
+          this.adminDTOs = this.adminDTOs.filter(adminDTO => {
+            return adminDTO.id != this.sessionUtil.getLoginData().id
+          })
         }
       }
     )
   }
 
-  // todo -> implement save and update admin with constraints if master or slave (may add update info button in the navbar for every admin and all admins tab for delete or update others for master admins only)
-  openFormDialog(adminDTO?: AdminDTO) {
+  openFormDialog() {
+    const dialogRef = this.dialog.open(AdminFormPopupComponent, {
+      width: '400px',
+      height: '500px'
+    });
 
+    // Optional: Handle dialog close or submit events
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.getAllAdmins()
+      }
+    });
   }
 
   deleteAdmin(id: number) {

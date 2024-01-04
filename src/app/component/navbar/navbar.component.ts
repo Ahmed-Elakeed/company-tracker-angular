@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import {Router} from "@angular/router";
 import {SessionUtilService} from "../../util/session-util.service";
 import {AdminRole} from "../../enums/AdminRole";
+import {AdminFormPopupComponent} from "../admin-form-popup/admin-form-popup.component";
+import {MatDialog} from "@angular/material/dialog";
 
 
 
@@ -13,15 +14,31 @@ import {AdminRole} from "../../enums/AdminRole";
 export class NavbarComponent {
 
   protected readonly AdminRole = AdminRole;
-  constructor(private router:Router, private sessionUtil:SessionUtilService) {
+  constructor(
+    private dialog:MatDialog,
+    private sessionUtil:SessionUtilService
+  ) {
   }
   logout() {
-    localStorage.clear();
-    sessionStorage.clear();
-    this.router.navigate(['/login']);
+    this.sessionUtil.logout();
   }
 
   checkRole() {
     return this.sessionUtil.getLoginData().role == AdminRole.MASTER;
+  }
+
+  openFormDialog() {
+    const dialogRef = this.dialog.open(AdminFormPopupComponent, {
+      width: '400px',
+      height: '500px',
+      data: this.sessionUtil.getLoginData()
+    });
+
+    // Optional: Handle dialog close or submit events
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        console.log("Personal data updated")
+      }
+    });
   }
 }
