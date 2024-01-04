@@ -1,0 +1,89 @@
+<div class="container">
+  <div class="row" style="margin-top:20px">
+    <ng-container *ngIf="invalidCredentials; else elseBlock">
+      <div>
+        <div class="alert alert-danger" *ngIf="!taskSaveDTO.status">
+          Please select a status
+        </div>
+        <div class="alert alert-danger" *ngIf="!taskSaveDTO.projectId">
+          Please select a project
+        </div>
+        <div class="alert alert-danger" *ngIf="!taskSaveDTO.employeeId">
+          Please select a employee
+        </div>
+        <div class="alert alert-info" *ngIf="taskSaveDTO.status && taskSaveDTO.projectId && taskSaveDTO.employeeId">
+          Please fill task data
+        </div>
+      </div>
+    </ng-container>
+    <ng-template #elseBlock>
+      <div>
+        <div class="alert alert-info">
+          Please fill task data
+        </div>
+      </div>
+    </ng-template>
+    <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
+      <form ngNativeValidate role="form" (ngSubmit)="saveOrUpdateTask()">
+        <fieldset>
+          <div class="form-group">
+            <input type="text" name="taskName" id="taskName" class="form-control input-group-sm"
+                   placeholder="Task Name" required [(ngModel)]="taskSaveDTO.name">
+          </div>
+          <hr class="colorgraph">
+          <div class="form-group">
+            <input type="text" name="description" id="description" class="form-control input-group-sm"
+                   placeholder="Description" [(ngModel)]="taskSaveDTO.description">
+          </div>
+          <hr class="colorgraph">
+          <div class="form-group">
+            <label>Start Date</label>
+            <input type="date" name="startDate" id="startDate" class="form-control input-group-sm"
+                   placeholder="Start Date" required [(ngModel)]="taskSaveDTO.startDate">
+          </div>
+          <hr class="colorgraph">
+          <div class="form-group">
+            <label>End Date</label>
+            <input type="date" name="endDate" id="endDate" class="form-control input-group-sm" placeholder="End Date"
+                   [(ngModel)]="taskSaveDTO.endDate">
+          </div>
+          <hr class="colorgraph">
+          <div class="form-group">
+            <div class="mb-3">
+              <select [(ngModel)]="taskSaveDTO.status" [ngModelOptions]="{standalone: true}"
+                      id="statusSelect" class="form-select" required>
+                <option value="undefined" disabled selected>Select a status</option>
+                <option *ngFor="let status of allTaskStatus()" [ngValue]="status">{{status}}</option>
+              </select>
+            </div>
+          </div>
+          <hr class="colorgraph">
+          <div class="form-group">
+            <div class="mb-3">
+              <select [(ngModel)]="taskSaveDTO.projectId" [ngModelOptions]="{standalone: true}"
+                      id="projectSelect" class="form-select" (change)="onProjectSelect()" required>
+                <option value="undefined" disabled selected>Select a project</option>
+                <option *ngFor="let project of projectList" [ngValue]="project.id">{{project.name}}</option>
+              </select>
+            </div>
+          </div>
+          <hr class="colorgraph">
+          <div class="form-group">
+            <div class="mb-3">
+              <select [disabled]="!isProjectSelected && !taskSaveDTO.employeeId" [(ngModel)]="taskSaveDTO.employeeId" [ngModelOptions]="{standalone: true}"
+                      id="employeeSelect" class="form-select" required>
+                <option value="undefined" disabled selected>Select a employee</option>
+                <option *ngFor="let employee of employeeList" [ngValue]="employee.id">{{employee.fullName}}</option>
+              </select>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-6 col-sm-6 col-md-6">
+              <button type="submit" class="btn btn-lg btn-success btn-block">Submit</button>
+            </div>
+          </div>
+        </fieldset>
+      </form>
+    </div>
+  </div>
+</div>

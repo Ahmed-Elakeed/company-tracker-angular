@@ -1,4 +1,5 @@
-<h3 style="text-align: center;margin: auto;padding: 15px;color: #a30505">Departments</h3>
+<h3>Departments</h3>
+<a class="btn btn-success" style="float: right; margin-right: 5px;margin-bottom: 5px" (click)="openFormDialog()">Add Department</a>
 <table class="table">
   <thead class="thead-dark" style="background-color: black;color: white">
   <tr>
@@ -12,8 +13,9 @@
     <td>{{departmentDTO.id}}</td>
     <td>{{departmentDTO.name}}</td>
     <td>
-      <button class="btn btn-primary">Update</button> |
-      <button class="btn btn-danger">Delete</button>
+      <button class="btn btn-primary" (click)="showDepartmentEmployees(departmentDTO.id)">Employees</button> |
+      <button class="btn" style="background-color: #2eb6e8" (click)="showDepartmentProjects(departmentDTO.id)">Projects</button> |
+      <button class="btn btn-danger" (click)="deleteDepartment(departmentDTO.id)">Delete</button>
     </td>
   </tr>
   </tbody>

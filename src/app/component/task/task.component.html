@@ -1,0 +1,33 @@
+<h3>Tasks</h3>
+<a class="btn btn-success" style="float: right; margin-right: 5px;margin-bottom: 5px" (click)="openFormDialog()">Add Task</a>
+<table class="table">
+  <thead class="thead-dark" style="background-color: black;color: white">
+  <tr>
+    <th scope="col">#</th>
+    <th scope="col">Name</th>
+    <th scope="col">Description</th>
+    <th scope="col">Start Date</th>
+    <th scope="col">End Date</th>
+    <th scope="col">Status</th>
+    <th scope="col">Project</th>
+    <th scope="col">Employee</th>
+    <th scope="col">Action</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let taskDTO of tasksDTOs">
+    <td>{{taskDTO.id}}</td>
+    <td>{{taskDTO.name}}</td>
+    <td>{{taskDTO.description}}</td>
+    <td>{{taskDTO.startDate | date:'mediumDate'}}</td>
+    <td>{{taskDTO.endDate | date:'mediumDate'}}</td>
+    <td>{{taskDTO.status}}</td>
+    <td>{{taskDTO.projectName}}</td>
+    <td>{{taskDTO.employeeName}}</td>
+    <td>
+      <button class="btn btn-primary" (click)="openFormDialog(taskDTO)">Update</button> |
+      <button class="btn btn-danger" (click)="deleteTask(taskDTO.id)">Delete</button>
+    </td>
+  </tr>
+  </tbody>
+</table>

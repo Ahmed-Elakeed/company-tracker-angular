@@ -1,0 +1,17 @@
+<table class="table">
+  <thead class="thead-dark" style="background-color: #05726e;color: white">
+  <tr>
+    <!-- Dynamic table header based on object properties -->
+    <th scope="col" *ngFor="let header of data.tableHeaders">{{ header }}</th>
+  </tr>
+  </thead>
+  <tbody>
+  <!-- Loop over each object in the array -->
+  <tr *ngFor="let item of data.tableData">
+    <!-- Loop over each property in the object -->
+    <td *ngFor="let key of Object.keys(item)">
+      {{ item[key] }}
+    </td>
+  </tr>
+  </tbody>
+</table>

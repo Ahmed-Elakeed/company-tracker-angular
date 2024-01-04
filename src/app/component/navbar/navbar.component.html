@@ -1,14 +1,18 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <span class="navbar-brand" style="font-size: x-large;font-weight: bold;color: green">Company-Tracker</span>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+  <span class="navbar-brand"
+        style="font-size: x-large;font-weight: bold;color: green;padding: 10px">Company-Tracker</span>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+          aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav">
       <a routerLink="/departments" class="nav-item nav-link" href="#">Departments</a>
       <a routerLink="/employees" class="nav-item nav-link">Employees</a>
-      <a class="nav-item nav-link" href="#">Projects</a>
-      <a class="nav-item nav-link" href="#">Tasks</a>
+      <a routerLink="/projects" class="nav-item nav-link">Projects</a>
+      <a routerLink="/tasks" class="nav-item nav-link">Tasks</a>
+      <a *ngIf="checkRole()" routerLink="/admins" class="nav-item nav-link" style="color: #a10606;font-size: large;font-weight: bold">Admins</a>
     </div>
   </div>
+  <a class="btn btn-danger mb-lg-auto" style="margin-right: 5px;margin-top: 10px" (click)="logout()">Logout</a>
 </nav>

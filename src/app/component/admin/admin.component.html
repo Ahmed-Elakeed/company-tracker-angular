@@ -1,0 +1,25 @@
+<h3>Admins</h3>
+<a class="btn btn-success" style="float: right; margin-right: 5px;margin-bottom: 5px" (click)="openFormDialog()">Add Admin</a>
+<table class="table">
+  <thead class="thead-dark" style="background-color: black;color: white">
+  <tr>
+    <th scope="col">#</th>
+    <th scope="col">Name</th>
+    <th scope="col">Name</th>
+    <th scope="col">Role</th>
+    <th scope="col">Action</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let adminDTO of adminDTOs">
+    <td>{{adminDTO.id}}</td>
+    <td>{{adminDTO.name}}</td>
+    <td>{{adminDTO.email}}</td>
+    <td>{{adminDTO.role}}</td>
+    <td>
+      <button class="btn btn-primary" (click)="openFormDialog(adminDTO)">Update</button> |
+      <button class="btn btn-danger" (click)="deleteAdmin(adminDTO.id)">Delete</button>
+    </td>
+  </tr>
+  </tbody>
+</table>

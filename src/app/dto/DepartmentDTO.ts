@@ -1,4 +1,4 @@
-export interface DepartmentDTO{
-  id:number,
+export class DepartmentDTO{
+  id:number
   name:string
 }

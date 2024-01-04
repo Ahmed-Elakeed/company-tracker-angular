@@ -1,0 +1,48 @@
+<div class="container">
+  <div class="row" style="margin-top:20px">
+    <ng-container *ngIf="invalidCredentials; else elseBlock">
+      <div>
+        <div class="alert alert-danger" *ngIf="employeeSaveDTO.departmentId">
+          Employee with same email already exist
+        </div>
+        <div class="alert alert-danger" *ngIf="!employeeSaveDTO.departmentId">
+          Please select a department
+        </div>
+      </div>
+    </ng-container>
+    <ng-template #elseBlock>
+      <div>
+        <div class="alert alert-info">
+          Please fill employee data
+        </div>
+      </div>
+    </ng-template>
+    <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
+      <form ngNativeValidate role="form" (ngSubmit)="saveOrUpdateEmployee()">
+        <fieldset>
+          <div class="form-group">
+            <input type="text" name="name" id="name" class="form-control input-group-sm" placeholder="Employee Full Name" required [(ngModel)]="employeeSaveDTO.fullName">
+          </div>
+          <hr class="colorgraph">
+          <div class="form-group">
+            <input type="email" name="email" id="email" class="form-control input-group-sm" placeholder="Employee Email" required [(ngModel)]="employeeSaveDTO.email">
+          </div>
+          <hr class="colorgraph">
+          <div class="form-group">
+            <div class="mb-3">
+              <select [(ngModel)]="employeeSaveDTO.departmentId" [ngModelOptions]="{standalone: true}"  id="departmentSelect" class="form-select" required>
+                <option value="undefined" disabled selected>Select a department</option>
+                <option *ngFor="let department of departmentList" [ngValue]="department.id">{{department.name}}</option>
+              </select>
+            </div></div>
+          <div class="row">
+            <div class="col-xs-6 col-sm-6 col-md-6">
+              <button type="submit" class="btn btn-lg btn-success btn-block">Submit</button>
+            </div>
+          </div>
+        </fieldset>
+      </form>
+    </div>
+  </div>
+
+</div>

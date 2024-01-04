@@ -1,0 +1,77 @@
+<div class="container">
+  <div class="row" style="margin-top:20px">
+    <ng-container *ngIf="invalidCredentials; else elseBlock">
+      <div>
+        <div class="alert alert-danger" *ngIf="!projectSaveDTO.status">
+          Please select a status
+        </div>
+        <div class="alert alert-danger" *ngIf="!projectSaveDTO.departmentId">
+          Please select a department
+        </div>
+        <div class="alert alert-info" *ngIf="projectSaveDTO.departmentId && projectSaveDTO.status">
+          Please fill employee data
+        </div>
+      </div>
+    </ng-container>
+    <ng-template #elseBlock>
+      <div>
+        <div class="alert alert-info">
+          Please fill employee data
+        </div>
+      </div>
+    </ng-template>
+    <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
+      <form ngNativeValidate role="form" (ngSubmit)="saveOrUpdateProject()">
+        <fieldset>
+          <div class="form-group">
+            <input type="text" name="projectName" id="projectName" class="form-control input-group-sm"
+                   placeholder="Project Name" required [(ngModel)]="projectSaveDTO.name">
+          </div>
+          <hr class="colorgraph">
+          <div class="form-group">
+            <label>Start Date</label>
+            <input type="date" name="startDate" id="startDate" class="form-control input-group-sm"
+                   placeholder="Start Date" required [(ngModel)]="projectSaveDTO.startDate">
+          </div>
+          <hr class="colorgraph">
+          <div class="form-group">
+            <label>End Date</label>
+            <input type="date" name="endDate" id="endDate" class="form-control input-group-sm" placeholder="End Date"
+                   [(ngModel)]="projectSaveDTO.endDate">
+          </div>
+          <hr class="colorgraph">
+          <div class="form-group">
+            <input type="text" name="description" id="description" class="form-control input-group-sm"
+                   placeholder="Description" [(ngModel)]="projectSaveDTO.description">
+          </div>
+          <hr class="colorgraph">
+          <div class="form-group">
+            <div class="mb-3">
+              <select [(ngModel)]="projectSaveDTO.status" [ngModelOptions]="{standalone: true}"
+                      id="statusSelect" class="form-select" required>
+                <option value="undefined" disabled selected>Select a status</option>
+                <option *ngFor="let status of allProjectStatus()" [ngValue]="status">{{status}}</option>
+              </select>
+            </div>
+          </div>
+          <hr class="colorgraph">
+          <div class="form-group">
+            <div class="mb-3">
+              <select [(ngModel)]="projectSaveDTO.departmentId" [ngModelOptions]="{standalone: true}"
+                      id="departmentSelect" class="form-select" required>
+                <option value="undefined" disabled selected>Select a department</option>
+                <option *ngFor="let department of departmentList" [ngValue]="department.id">{{department.name}}</option>
+              </select>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-6 col-sm-6 col-md-6">
+              <button type="submit" class="btn btn-lg btn-success btn-block">Submit</button>
+            </div>
+          </div>
+        </fieldset>
+      </form>
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,31 @@
+<h3>Projects</h3>
+<a class="btn btn-success" style="float: right; margin-right: 5px;margin-bottom: 5px" (click)="openFormDialog()">Add Project</a>
+<table class="table">
+  <thead class="thead-dark" style="background-color: black;color: white">
+  <tr>
+    <th scope="col">#</th>
+    <th scope="col">Name</th>
+    <th scope="col">Start Date</th>
+    <th scope="col">End Date</th>
+    <th scope="col">Description</th>
+    <th scope="col">Status</th>
+    <th scope="col">Department</th>
+    <th scope="col">Action</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let projectDTO of projectsDTOs">
+    <td>{{projectDTO.id}}</td>
+    <td>{{projectDTO.name}}</td>
+    <td>{{projectDTO.startDate | date:'mediumDate'}}</td>
+    <td>{{projectDTO.endDate | date:'mediumDate'}}</td>
+    <td>{{projectDTO.description}}</td>
+    <td>{{projectDTO.status}}</td>
+    <td>{{projectDTO.departmentName}}</td>
+    <td>
+      <button class="btn btn-primary" (click)="openFormDialog(projectDTO)">Update</button> |
+      <button class="btn btn-danger" (click)="deleteProject(projectDTO.id)">Delete</button>
+    </td>
+  </tr>
+  </tbody>
+</table>
