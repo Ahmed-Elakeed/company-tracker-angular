@@ -3,7 +3,7 @@ import {BrowserModule} from '@angular/platform-browser';
 
 import {AppComponent} from './app.component';
 import {EmployeeComponent} from './component/employee/employee.component';
-import {HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {DepartmentComponent} from './component/department/department.component';
 import {NavbarComponent} from './component/navbar/navbar.component';
 import {RouterLink, RouterOutlet} from "@angular/router";
@@ -23,6 +23,7 @@ import {DatePipe} from "@angular/common";
 import { TaskFormPopupComponent } from './component/task-form-popup/task-form-popup.component';
 import { AdminComponent } from './component/admin/admin.component';
 import { AdminFormPopupComponent } from './component/admin-form-popup/admin-form-popup.component';
+import {HttpInterceptorService} from "./interceptors/http-interceptor.service";
 
 @NgModule({
   declarations: [
@@ -52,7 +53,14 @@ import { AdminFormPopupComponent } from './component/admin-form-popup/admin-form
     BrowserAnimationsModule,
     MatDialogModule
   ],
-  providers: [DatePipe],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpInterceptorService,
+      multi: true,
+    },
+    DatePipe
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
