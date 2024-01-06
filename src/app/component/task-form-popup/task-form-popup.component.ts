@@ -3,7 +3,6 @@ import {TaskDTO} from "../../dto/TaskDTO";
 import {TaskStatus} from "../../enums/TaskStatus";
 import {EmployeeDTO} from "../../dto/EmployeeDTO";
 import {ProjectDTO} from "../../dto/ProjectDTO";
-import {EmployeeService} from "../../service/employee.service";
 import {ProjectService} from "../../service/project.service";
 import {DatePipe} from "@angular/common";
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
@@ -23,7 +22,6 @@ export class TaskFormPopupComponent implements OnInit {
 
   constructor(
     private taskService: TaskService,
-    private employeeService: EmployeeService,
     private projectService: ProjectService,
     private datePipe: DatePipe,
     private dialogRef: MatDialogRef<TaskFormPopupComponent>,

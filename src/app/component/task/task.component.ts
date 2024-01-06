@@ -3,13 +3,14 @@ import {TaskService} from "../../service/task.service";
 import {TaskDTO} from "../../dto/TaskDTO";
 import {TaskFormPopupComponent} from "../task-form-popup/task-form-popup.component";
 import {MatDialog} from "@angular/material/dialog";
+import {TasksReportFormComponent} from "../tasks-report-form/tasks-report-form.component";
 
 @Component({
   selector: 'app-task',
   templateUrl: './task.component.html',
   styleUrls: ['./task.component.css']
 })
-export class TaskComponent implements OnInit{
+export class TaskComponent implements OnInit {
   public tasksDTOs: TaskDTO[] = [];
 
   constructor(private taskService: TaskService, private dialog: MatDialog) {
@@ -54,5 +55,19 @@ export class TaskComponent implements OnInit{
         }
       )
     }
+  }
+
+  openReportFormDialog() {
+    const dialogRef = this.dialog.open(TasksReportFormComponent, {
+      width: '450px',
+      height: '220px'
+    });
+
+    // Optional: Handle dialog close or submit events
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        console.log("Tasks report sent successfully");
+      }
+    });
   }
 }

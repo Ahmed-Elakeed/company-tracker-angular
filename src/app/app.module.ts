@@ -24,6 +24,7 @@ import { TaskFormPopupComponent } from './component/task-form-popup/task-form-po
 import { AdminComponent } from './component/admin/admin.component';
 import { AdminFormPopupComponent } from './component/admin-form-popup/admin-form-popup.component';
 import {HttpInterceptorService} from "./interceptors/http-interceptor.service";
+import { TasksReportFormComponent } from './component/tasks-report-form/tasks-report-form.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import {HttpInterceptorService} from "./interceptors/http-interceptor.service";
     ProjectFormPopupComponent,
     TaskFormPopupComponent,
     AdminComponent,
-    AdminFormPopupComponent
+    AdminFormPopupComponent,
+    TasksReportFormComponent
   ],
   imports: [
     BrowserModule,
