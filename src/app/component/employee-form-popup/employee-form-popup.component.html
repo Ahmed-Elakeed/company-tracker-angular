@@ -21,20 +21,24 @@
       <form ngNativeValidate role="form" (ngSubmit)="saveOrUpdateEmployee()">
         <fieldset>
           <div class="form-group">
-            <input type="text" name="name" id="name" class="form-control input-group-sm" placeholder="Employee Full Name" required [(ngModel)]="employeeSaveDTO.fullName">
+            <input type="text" name="name" id="name" class="form-control input-group-sm"
+                   placeholder="Employee Full Name" required [(ngModel)]="employeeSaveDTO.fullName">
           </div>
           <hr class="colorgraph">
           <div class="form-group">
-            <input type="email" name="email" id="email" class="form-control input-group-sm" placeholder="Employee Email" required [(ngModel)]="employeeSaveDTO.email">
+            <input type="email" name="email" id="email" class="form-control input-group-sm" placeholder="Employee Email"
+                   required [(ngModel)]="employeeSaveDTO.email">
           </div>
           <hr class="colorgraph">
           <div class="form-group">
             <div class="mb-3">
-              <select [(ngModel)]="employeeSaveDTO.departmentId" [ngModelOptions]="{standalone: true}"  id="departmentSelect" class="form-select" required>
+              <select [(ngModel)]="employeeSaveDTO.departmentId" [ngModelOptions]="{standalone: true}"
+                      id="departmentSelect" class="form-select" required>
                 <option value="undefined" disabled selected>Select a department</option>
                 <option *ngFor="let department of departmentList" [ngValue]="department.id">{{department.name}}</option>
               </select>
-            </div></div>
+            </div>
+          </div>
           <div class="row">
             <div class="col-xs-6 col-sm-6 col-md-6">
               <button type="submit" class="btn btn-lg btn-success btn-block">Submit</button>
