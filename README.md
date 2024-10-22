@@ -2,7 +2,7 @@
 
 ## 📖 Overview
 
-**Company Tracker Angular** is a frontend application that integrates with the **Company Tracker** backend, providing a rich user interface for managing company-related data. Built using Angular, TypeScript, HTML, and CSS, it incorporates Bootstrap for responsive design. The application features Angular components, services, interceptors, guards, and DTOs to deliver an intuitive user experience.
+**Company Tracker Angular** is a frontend application that integrates with the **Company Tracke Springr** backend, providing a rich user interface for managing company-related data. Built using Angular, TypeScript, HTML, and CSS, it incorporates Bootstrap for responsive design. The application features Angular components, services, interceptors, guards, and DTOs to deliver an intuitive user experience.
 
 ## 🚀 Features
 
